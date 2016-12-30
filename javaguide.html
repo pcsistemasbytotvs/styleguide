@@ -17,12 +17,10 @@
         <div class="main_body">
             <h2 id="s1-introducao">1 Introdução</h2>
             <p>Este documento tem um guia <strong>completo</strong> de codificação da PC Sistemas para a linguagem Java&#8482;.</p>
-
             <h2 id="s2-arquivos">2 Definição de arquivos</h2>
             <h3 id="s2.1-nome-arquivos">2.1 Nome do arquivo</h3>
             <h3 id="s2.2-codificacao-arquivos">2.2 Codificação dos arquivos: UTF-8</h3>
             <p>Todos os arquivos são codificados em <strong>UTF-8</strong>.</p>
-
             <h2 id="s3-estrutura-arquivos">3 Estrutura dos arquivos fonte</h2>
             <div>
                 <p>Os arquivos devem possuir a seguinte estrutura, <strong>em ordem</strong>:</p>
@@ -39,6 +37,155 @@
             <h3 id="s3.2-declaracao-pacotes">3.2 Declaração de pacotes</h3>
             <p>A declaração de pacotes <strong>não pode haver quebra de linha</strong>. O limite de coluna (Sessão 4.4,
                 <a href="#s4.4-limte-coluna">Limte de coluna: 100</a>) não se aplica a declaração de pacotes.</p>
+            <h3 id="s3.3-declaracao-imports">
+                3.3 Declaração de Imports
+            </h3>
+            <h4 id="s3.3.1-imports-coringa"> 3.3.1 Sem Imports Coringa</h4>
+            <p> <strong>Imports coringa</strong>, por exemplo <code class="prettyprint lang-java">import java.awt.*; </code>                sejam estáticos ou de outra forma, <strong>não são usados</strong>. </p>
+            <h4 id="s3.3.2-imports-quebra-linha">3.3.2 Sem quebra de linha</h4>
+            <p><strong>Não há quebra de linha</strong> para declarações de import. O limite de coluna (Sessão 4.4,
+                <a href="#s4.4-limite-coluna">Limite de coluna: 100</a>) não se aplica a declaração de imports. </p>
+            <h4 id="s3.3.3-imports-ordenacao-espacamento">3.3.3 Ordenação e Espaçamento</h4>
+            <p>Imports são ordenados da seguinte maneira:</p>
+            <ol>
+                <li>Todos os imports estáticos em um único bloco.</li>
+                <li>Todos os imports não-estáticos em um único bloco.</li>
+            </ol>
+            <p>Se há ambos, imports estáticos e não-estáticos, uma única linha em branco separa os dois blocos. Não há outras
+                linhas em branco entre as declarações de import.</p>
+            <p>Dentro de cada bloco os nomes importados aparecem ordenados em ASCII.</p>
+            <h4 id="s3.3.4-imports-estaticos">3.3.4 Sem imports estáticos para classes</h4>
+            <p> Import estático não é usado para classes aninhadas estáticas. Elas são importadas com imports normais. </p>
+            <h3 id="s3.4-declaracao-classe">3.4 Declaração de Classe</h3>
+            <p class="terminology"><strong>Nota de terminologia:</strong> uma classe <em>top-level</em> é aquela que não está aninhada em nenhuma
+                outra.
+            </p>
+            <h4 id="s3.4.1-declaracao-top-level">3.4.1 Exatamente uma declaração de classe top-level</h4>
+            <p> Cada classe top-level reside em seu próprio arquivo fonte.</p>
+            <h4 id="s3.4.2-declaracao-ordem-conteudo">3.4.2 Ordenação do conteúdo da classe</h4>
+            <p>A ordem que você escolher para os membros e inicializadores da sua classe pode ter um grande efeito na apreensibilidade.
+                Porém, não há uma receita correta para como fazer; diferente classes podem ordenar seus conteúdos de maneiras
+                diferentes.
+            </p>
+            <p>O importante é que cada classe use <strong><em>alguma</em> ordem lógica</strong>,na qual seu mantenedor possa
+                explicar se questionado. Por exemplo, novos métodos não são apenas habitualmente adicionados ao final da
+                classe, pois isto pode induzir uma ordenação "cronológica por data adicionada", que não é uma ordenação lógica.</p>
+            <h5 id="s3.4.2.1-declaracao-sobrecarga">3.4.2.1 Sobrecarga: Nunca separar</h5>
+            <p>Quando uma classe possui múltiplos construtores, ou múltiplos métodos com o mesmo nome, Esses aparecem sequencialmente,
+                com nenhum outro código no meio (nem mesmo membros privados).</p>
+            <h2 id="s4-formatacao">4 Formatação</h2>
+            <p class="terminology"><strong>Nota de terminologia:</strong> <em>Construção tipo bloco </em> referencia ao corpo de uma classe, método
+                ou construtor. Note que, pela seção 4.8.3.1, em <a href="#s4.8.3.1-formatacao-inicializadores-array">inicializadores de array</a>,
+                qualquer inicializador de array <em>pode</em> ser opcionalmente ser tratado como se fosse uma Construção
+                tipo bloco.</p>
+            <a name="chaves"></a>
+            <h3 id="s4.1-formatacao-chaves">4.1 Chaves</h3>
+            <h4 id="s4.1.1-formatacao-chaves-opcional">4.1.1 Chaves são utilizadas quando opcional</h4>
+            <p>Chaves são usadas com declarações <code class="prettyprint lang-java"> if </code>, <code class="prettyprint lang-java"> else </code>,
+                <code class="prettyprint lang-java"> for </code>, <code class="prettyprint lang-java"> do </code> e
+                <code class="prettyprint lang-java"> while </code>, até mesmo quando o corpo é vazio or contém apenas uma
+                única declaração. </p>
+            <h4 id="s4.1.2-blocos-estilo-k-r">4.1.2 Blocos não vazios: estilo K &amp; R </h4>
+            <p>Chaves seguem o estilo Kernighan and Ritchie ("
+                <a href="http://www.codinghorror.com/blog/2012/07/new-programming-jargon.html">Chaves egípcias</a>") para
+                blocos <em>não vazios</em> e construções tipo bloco:</p>
+            <ul>
+                <li>Sem quebra de linha antes da chave de abertura.</li>
+                <li>Quebra de linha após a chave de abertura.</li>
+                <li>Quebra de linha antes da chave de fechamento.</li>
+                <li>Quebra de linha após a chave de fechamento, <em>apenas se</em> aquela chave encerra uma declaração ou encerra
+                    o corpo de um método, construtor, ou classe <em>nomeada</em>. Por exemplo, <em>não</em> há quebra de
+                    linha após a chave se ela é seguida por um <code class="prettyprint lang-java">else</code> ou uma vírgula.</li>
+            </ul>
+            <p>Exemplos:</p>
+            <pre class="prettyprint lang-java">return () -&gt; {
+                while (condicao()) {
+                    metodo();
+                }
+                };
+
+                return new MinhaClasse() {
+                @Override public void metodo() {
+                    if (condicao()) {
+                    try {
+                        algumaCoisa();
+                    } catch (ProblemException e) {
+                        recuperar();
+                    }
+                    } else if (othercondicao()) {
+                    outraCoisa();
+                    } else {
+                    ultimaCoisa();
+                    }
+                }
+                };
+                </pre>
+            <p>Algumas exceções para classes enum são fornecidas na seção 4.8.1,
+                <a href="#s4.8.1-classes-enum">Classes enum</a>.</p>
+            <h4 id="s4.1.3-chaves-blocos-vazios">4.1.3 Blocos vazios: podem ser concisos</h4>
+            <p>Um bloco vazio ou construção tipo bloco pode estar no estilo K &amp; R (como descrito em <a href="#s4.1.2-blocos-estilo-k-r">Seção 4.1.2</a>).
+                Alternativamente, pode ser fechado imediatamente após ser aberto, sem caracteres ou quebras de linha no meio
+                (
+                <code class="prettyprint lang-java">{}</code>), <strong>a não ser que</strong> seja parte de uma <em>declaração multi-bloco</em>                (uma que contém múltiplos blocos diretamente:
+                <code class="prettyprint lang-java">if/else</code> ou
+                <code class="prettyprint lang-java">try/catch/finally</code>).</p>
+            <p>Exemplos:</p>
+            <pre class="prettyprint lang-java">  // Isto é aceitável
+            void facaNada() {}
+
+            // Isto é igualmente aceitável
+            void facaNadaMais() {
+            }
+            </pre>
+            <pre class="prettyprint lang-java badcode">  // Isto não é aceitável: Sem blocos concisos em uma declaração multi-bloco
+            try {
+                facaAlgo();
+            } catch (Exception e) {}
+            </pre>
+            <h3 id="s4.2-indentacao-bloco">4.2 Indentação de bloco: +2 espaços</h3>
+            <p>Cada vez que um novo bloco ou construção tipo bloco é aberta, a indentação aumenta em 2 espaços. Quando o bloco se encerra, a indentação retorna para o nível de indentação anterior. 
+                O nível de indentação se aplica para ambos código e comentários ao longo do bloco. (Veja o exemplo na seção 4.1.2,
+                <a href="#s4.1.2-blocos-estilo-k-r">Blocos não vazios: estilo K &amp; R </a>.)</p>
+            <h3 id="s4.3-one-statement-per-line">4.3 Uma declaração por linha</h3>
+            <p>Cada declaração é seguida por uma quebra de linha.</p>
+
+            <h3 id="s4.4-column-limit">4.4 Limite de Coluna: 100</h3>
+
+            <p>O código java tem um limite de coluna de 100 caracteres. Exceto os casos notados abaixo, qualquer linha que excederia
+                este limit deve ser quebrada, como explicado na seção 4.5, <a href="#s4.5-Quebra-linha">Quebra de linha</a>.
+            </p>
+
+            <p><strong>Exceções:</strong></p>
+
+            <ol>
+            <li>Linhas onde obedecer o limite de coluna não é possível (por exemplo, uma URL longa no Javadoc, ou uma referência de método JSNI longa).</li>
+
+            <li>declarações <code class="prettyprint lang-java">package</code> and
+            <code class="prettyprint lang-java">import</code> (veja Seções
+            3.2 <a href="#s3.2-declaracao-pacotes">Declaração de pacotes</a> and
+            3.3 <a href="#s3.3-declaracao-imports">Declaração de imports</a>).</li>
+
+            <li>Linhas de comando em um comentário que podem ser copiadas e coladas em um terminal.</li>
+            </ol>
+
+            <h3 id="s4.5-Quebra-linha">4.5 Quebra de linha</h3>
+
+            <p class="terminology"><strong>Nota de terminologia:</strong> Quando o código que poderia de outra forma legalmente ocupar uma única linha é dividido em múltiplas linhas,
+            essa atividade é chamada de 
+            <em>quebra de linha</em>.</p>
+
+            <p>Não há formular compreensiva ou determinística mostrando <em>exatamente</em> como realizar a quebra de linha em 
+            cada situação. Muito frequentemente, há várias formas de quebrar linha para um mesmo pedaço de código.</p>
+
+            <p class="note"><strong>Nota:</strong> Enquanto o motivo tipico para quebra de linha é para evitar transpassar o limite de coluna,
+            até mesmo código que iria de fato se encaixar dentro do limite da coluna <em>pode</em> ser quebrado de acordo com o critério do autor.</p>
+
+            <p class="tip"><strong>Dica:</strong> Extraindo um método ou uma variável local pode solucionar o problema sem a necessidade de quebrar linha.</p>
+            
+            <h4 id="s4.5.1-quebra-linha-onde-quebrar">4.5.1 Onde quebrar</h4>
+
+            <p>A primeira diretive de quebra de linha é: Prefira quebrar em um
+            <strong>nível sintático maior</strong>. Além disso:</p>
         </div>
     </div>
 </body>
