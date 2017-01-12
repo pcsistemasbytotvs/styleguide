@@ -17,12 +17,16 @@
         <div class="main_body">
             <h2 id="s1-introducao">1 Introdução</h2>
             <p>Este documento tem um guia <strong>completo</strong> de codificação da PC Sistemas para a linguagem Java&#8482;.</p>
-
+            <h3 id="s1.1-terminology">1.1 Terminology notes</h3>
+            <p>Nesse documento:</p>
+            <ol>
+                <li>O termo <em>campo</em> é usado para significar uma variável dentro de uma classe.
+                </li>
+            </ol>
             <h2 id="s2-arquivos">2 Definição de arquivos</h2>
             <h3 id="s2.1-nome-arquivos">2.1 Nome do arquivo</h3>
             <h3 id="s2.2-codificacao-arquivos">2.2 Codificação dos arquivos: UTF-8</h3>
             <p>Todos os arquivos são codificados em <strong>UTF-8</strong>.</p>
-
             <h2 id="s3-estrutura-arquivos">3 Estrutura dos arquivos fonte</h2>
             <div>
                 <p>Os arquivos devem possuir a seguinte estrutura, <strong>em ordem</strong>:</p>
@@ -39,6 +43,662 @@
             <h3 id="s3.2-declaracao-pacotes">3.2 Declaração de pacotes</h3>
             <p>A declaração de pacotes <strong>não pode haver quebra de linha</strong>. O limite de coluna (Sessão 4.4,
                 <a href="#s4.4-limte-coluna">Limte de coluna: 100</a>) não se aplica a declaração de pacotes.</p>
+            <h3 id="s3.3-declaracao-imports">
+                3.3 Declaração de Imports
+            </h3>
+            <h4 id="s3.3.1-imports-coringa"> 3.3.1 Sem Imports Coringa</h4>
+            <p> <strong>Imports coringa</strong>, por exemplo <code class="prettyprint lang-java">import java.awt.*; </code>                sejam estáticos ou de outra forma, <strong>não são usados</strong>. </p>
+            <h4 id="s3.3.2-imports-quebra-linha">3.3.2 Sem quebra de linha</h4>
+            <p><strong>Não há quebra de linha</strong> para declarações de import. O limite de coluna (Sessão 4.4,
+                <a href="#s4.4-limite-coluna">Limite de coluna: 100</a>) não se aplica a declaração de imports. </p>
+            <h4 id="s3.3.3-imports-ordenacao-espacamento">3.3.3 Ordenação e Espaçamento</h4>
+            <p>Imports são ordenados da seguinte maneira:</p>
+            <ol>
+                <li>Todos os imports estáticos em um único bloco.</li>
+                <li>Todos os imports não-estáticos em um único bloco.</li>
+            </ol>
+            <p>Se há ambos, imports estáticos e não-estáticos, uma única linha em branco separa os dois blocos. Não há outras
+                linhas em branco entre as declarações de import.</p>
+            <p>Dentro de cada bloco os nomes importados aparecem ordenados em ASCII.</p>
+            <h4 id="s3.3.4-imports-estaticos">3.3.4 Sem imports estáticos para classes</h4>
+            <p> Import estático não é usado para classes aninhadas estáticas. Elas são importadas com imports normais. </p>
+            <h3 id="s3.4-declaracao-classe">3.4 Declaração de Classe</h3>
+            <p class="terminology"><strong>Nota de terminologia:</strong> uma classe <em>top-level</em> é aquela que não está aninhada em nenhuma
+                outra.
+            </p>
+            <h4 id="s3.4.1-declaracao-top-level">3.4.1 Exatamente uma declaração de classe top-level</h4>
+            <p> Cada classe top-level reside em seu próprio arquivo fonte.</p>
+            <h4 id="s3.4.2-declaracao-ordem-conteudo">3.4.2 Ordenação do conteúdo da classe</h4>
+            <p>A ordem que você escolher para os membros e inicializadores da sua classe pode ter um grande efeito na apreensibilidade.
+                Porém, não há uma receita correta para como fazer; diferente classes podem ordenar seus conteúdos de maneiras
+                diferentes.
+            </p>
+            <p>O importante é que cada classe use <strong><em>alguma</em> ordem lógica</strong>,na qual seu mantenedor possa
+                explicar se questionado. Por exemplo, novos métodos não são apenas habitualmente adicionados ao final da
+                classe, pois isto pode induzir uma ordenação "cronológica por data adicionada", que não é uma ordenação lógica.</p>
+            <h5 id="s3.4.2.1-declaracao-sobrecarga">3.4.2.1 Sobrecarga: Nunca separar</h5>
+            <p>Quando uma classe possui múltiplos construtores, ou múltiplos métodos com o mesmo nome, Esses aparecem sequencialmente,
+                com nenhum outro código no meio (nem mesmo membros privados).</p>
+            <h2 id="s4-formatacao">4 Formatação</h2>
+            <p class="terminology"><strong>Nota de terminologia:</strong> <em>Construção tipo bloco </em> referencia ao corpo de uma classe, método
+                ou construtor. Note que, pela seção 4.8.3.1, em <a href="#s4.8.3.1-formatacao-inicializadores-array">inicializadores de array</a>,
+                qualquer inicializador de array <em>pode</em> ser opcionalmente ser tratado como se fosse uma Construção
+                tipo bloco.</p>
+            <a name="chaves"></a>
+            <h3 id="s4.1-formatacao-chaves">4.1 Chaves</h3>
+            <h4 id="s4.1.1-formatacao-chaves-opcional">4.1.1 Chaves são utilizadas quando opcional</h4>
+            <p>Chaves são usadas com instrução <code class="prettyprint lang-java"> if </code>, <code class="prettyprint lang-java"> else </code>,
+                <code class="prettyprint lang-java"> for </code>, <code class="prettyprint lang-java"> do </code> e
+                <code class="prettyprint lang-java"> while </code>, até mesmo quando o corpo é vazio or contém apenas uma
+                única instrução. </p>
+            <h4 id="s4.1.2-blocos-estilo-k-r">4.1.2 Blocos não vazios: estilo K &amp; R </h4>
+            <p>Chaves seguem o estilo Kernighan and Ritchie ("
+                <a href="http://www.codinghorror.com/blog/2012/07/new-programming-jargon.html">Chaves egípcias</a>") para
+                blocos <em>não vazios</em> e construções tipo bloco:</p>
+            <ul>
+                <li>Sem quebra de linha antes da chave de abertura.</li>
+                <li>Quebra de linha após a chave de abertura.</li>
+                <li>Quebra de linha antes da chave de fechamento.</li>
+                <li>Quebra de linha após a chave de fechamento, <em>apenas se</em> aquela chave encerra uma instrução ou encerra
+                    o corpo de um método, construtor, ou classe <em>nomeada</em>. Por exemplo, <em>não</em> há quebra de
+                    linha após a chave se ela é seguida por um <code class="prettyprint lang-java">else</code> ou uma vírgula.</li>
+            </ul>
+            <p>Exemplos:</p>
+<pre class="prettyprint lang-java">return () -&gt; {
+    while (condicao()) {
+        metodo();
+    }
+};
+
+return new MinhaClasse() {
+    @Override public void metodo() {
+        if (condicao()) {
+            try {
+                algumaCoisa();
+            } catch (ProblemException e) {
+                recuperar();
+            }
+        } else if (othercondicao()) {
+            outraCoisa();
+        } else {
+            ultimaCoisa();
+        }
+    }
+};
+    </pre>
+            <p>Algumas exceções para classes enum são fornecidas na seção 4.8.1,
+                <a href="#s4.8.1-classes-enum">Classes enum</a>.</p>
+            <h4 id="s4.1.3-chaves-blocos-vazios">4.1.3 Blocos vazios: podem ser concisos</h4>
+            <p>Um bloco vazio ou construção tipo bloco pode estar no estilo K &amp; R (como descrito em <a href="#s4.1.2-blocos-estilo-k-r">Seção 4.1.2</a>).
+                Alternativamente, pode ser fechado imediatamente após ser aberto, sem caracteres ou quebras de linha no meio
+                (
+                <code class="prettyprint lang-java">{}</code>), <strong>a não ser que</strong> seja parte de uma <em>instrução multi-bloco</em>                (uma que contém múltiplos blocos diretamente:
+                <code class="prettyprint lang-java">if/else</code> ou
+                <code class="prettyprint lang-java">try/catch/finally</code>).</p>
+            <p>Exemplos:</p>
+<pre class="prettyprint lang-java">// Isto é aceitável
+void facaNada() {}
+
+// Isto é igualmente aceitável
+void facaNadaMais() {
+}
+</pre>
+<pre class="prettyprint lang-java badcode">// Isto não é aceitável: Sem blocos concisos em uma instrução multi-bloco
+try {
+    facaAlgo();
+} catch (Exception e) {}
+</pre>
+            <h3 id="s4.2-indentacao-bloco">4.2 Indentação de bloco: +2 espaços</h3>
+            <p>Cada vez que um novo bloco ou construção tipo bloco é aberta, a indentação aumenta em 2 espaços. Quando o bloco
+                se encerra, a indentação retorna para o nível de indentação anterior. O nível de indentação se aplica para
+                ambos código e comentários ao longo do bloco. (Veja o exemplo na seção 4.1.2,
+                <a href="#s4.1.2-blocos-estilo-k-r">Blocos não vazios: estilo K &amp; R </a>.)</p>
+            <h3 id="s4.3-instrucao-por-linha">4.3 Uma instrução por linha</h3>
+            <p>Cada instrução é seguida por uma quebra de linha.</p>
+            <h3 id="s4.4-column-limit">4.4 Limite de Coluna: 100</h3>
+            <p>O código java tem um limite de coluna de 100 caracteres. Exceto os casos notados abaixo, qualquer linha que excederia
+                este limit deve ser quebrada, como explicado na seção 4.5, <a href="#s4.5-quebra-linha">Quebra de linha</a>.
+            </p>
+            <p><strong>Exceções:</strong></p>
+            <ol>
+                <li>Linhas onde obedecer o limite de coluna não é possível (por exemplo, uma URL longa no Javadoc, ou uma referência
+                    de método JSNI longa).</li>
+                <li>declarações <code class="prettyprint lang-java">package</code> and
+                    <code class="prettyprint lang-java">import</code> (veja Seções 3.2 <a href="#s3.2-declaracao-pacotes">Declaração de pacotes</a>                    and 3.3 <a href="#s3.3-declaracao-imports">Declaração de imports</a>).</li>
+                <li>Linhas de comando em um comentário que podem ser copiadas e coladas em um terminal.</li>
+            </ol>
+            <h3 id="s4.5-quebra-linha">4.5 Quebra de linha</h3>
+            <p class="terminology"><strong>Nota de terminologia:</strong> Quando o código que poderia de outra forma legalmente ocupar uma única
+                linha é dividido em múltiplas linhas, essa atividade é chamada de
+                <em>quebra de linha</em>.</p>
+            <p>Não há formular compreensiva ou determinística mostrando <em>exatamente</em> como realizar a quebra de linha
+                em cada situação. Muito frequentemente, há várias formas de quebrar linha para um mesmo pedaço de código.</p>
+            <p class="note"><strong>Nota:</strong> Enquanto o motivo tipico para quebra de linha é para evitar transpassar o limite de coluna,
+                até mesmo código que iria de fato se encaixar dentro do limite da coluna <em>pode</em> ser quebrado de acordo
+                com o critério do autor.</p>
+            <p class="tip"><strong>Dica:</strong> Extraindo um método ou uma variável local pode solucionar o problema sem a necessidade
+                de quebrar linha.</p>
+            <h4 id="s4.5.1-quebra-linha-onde-quebrar">4.5.1 Onde quebrar</h4>
+            <p>A primeira diretive de quebra de linha é: Prefira quebrar em um
+                <strong>nível sintático maior</strong>. Além disso:</p>
+            <ol>
+                <li>Quando uma linha é quebrada em um operador de <em>não-atribuição</em>, a quebra vem<em>antes</em> do símbolo.
+                    <ul>
+                        <li>Isto também se aplica para os seguintes símbolos:
+                            <ul>
+                                <li>o separador de ponto (<code class="prettyprint lang-java">.</code>)</li>
+                                <li>os dois pontos duplos de uma referência de método (
+                                    <code class="prettyprint lang-java">::</code>)</li>
+                                <li>uma ampulheta (&) em um de tipo vinculado (
+                                    <code class="prettyprint lang-java">&lt;T extends Foo &amp; Bar&gt;</code>)</li>
+                                <li>um pipe em um bloco catch (
+                                    <code class="prettyprint lang-java">catch (FooException | BarException e)</code>).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Quando uma linha é quebrada em operador de <em>atribuição</em>, a quebra tipicamente ocorre
+                    <em>após</em> o símbolo, mas a quebra antes também é aceitável.
+                    <ul>
+                        <li>Isto também se aplica para o <code class="prettyprint lang-java">:</code> do
+                            <code class="prettyprint lang-java">for</code> melhorado ("foreach") em uma instrução.</li>
+                    </ul>
+                </li>
+                <li>Um nome de método ou construtor permanece anexado ao parênteses de abertura (
+                    <code class="prettyprint lang-java">(</code>) que o segue.</li>
+                <li>Uma vírgula (<code class="prettyprint lang-java">,</code>) permanece anexada ao símbolo que a precede.</li>
+                <li>Uma linha nunca é quebrada adjacentemente à seta em um lambda, exceto quando a lambda consiste em uma expressão
+                    única sem chaves. Exemplos: 
+<pre class="prettyprint lang-java">
+MinhaLambda&lt;String, Long, Object&gt; lambda =
+    (String label, Long valor, Object obj) -&gt; {
+        ...
+    };
+
+Predicate&lt;String&gt; predicado = str -&gt;
+    longExpressionInvolving(str);
+</pre>
+                </li>
+            </ol>
+            <p class="note"><strong>Nota:</strong> O objetivo primário com a quebra de linha é obter um código limpo, <em>não necessariamente</em>                código que se encaixa no menor número de linhas.</p>
+            <h4 id="s4.5.2-quebra-linha-indentacao">4.5.2 Indentar linhas de continuação com pelo menos +4 espaços</h4>
+            <p>Ao quebrar linha, cada linha após a primeira (cada <em>linha de continuação</em>) é indentada pelo +4 espaços
+                da linha original.</p>
+            <p> Quando há múltiplas linhas, a indentação pode variar entre +4 como desejado. Em geral, duas linhas de continuação
+                usam o mesmo nível de indentação se e somente se elas começarem com elementos sintaticamente paralelos.</p>
+            <p>Seção 4.6.3 em <a href="#s4.6.3-alinhamento-horizontal">Alinhamento horizontal</a> endereça a prática desencorajada
+                de usar um número variável de espaços para alinhar certos símbolos com linhas anteriores.</p>
+            <h3 id="s4.6-espaco-em-branco">4.6 Espaço em branco</h3>
+            <h4 id="s4.6.1-espaco-em-branco-vertical">4.6.1 Espaço em branco vertical</h4>
+            <p>Uma única linha em branco aparece:</p>
+            <ol>
+                <li><em>Entre</em> membros consecutivos ou inicializadores de uma classe: campos (variáveis de tipos básicos
+                    de dados), construtores, métodos, classes aninhadas, inicializadores estáticos, e inicializadores de
+                    instância.
+                    <ul>
+                        <li><span class="exception"><strong>Exceção:</strong> Uma linha em branco entre dois campos consecutivos
+                        (não tendo outro código entre eles) é opcional. Tais linhas em branco são usadas quando necessário para criar <em>agrupamentos lógicos</em> de campos.</span></li>
+                        <li><span class="exception"><strong>Exceção:</strong> Linhas em beanco entre constantes de enum são discutidas na <a href="#s4.8.1-classes-enum">Seção 4.8.1</a>.</span></li>
+                    </ul>
+                </li>
+                <li>Entre instruções, <em>quando necessário</em> para organizar o código em subseções lógicas.
+                </li>
+                <li><em>Opcionalmente</em> antes do primeiro membro ou inicializador, ou após o último membro ou inicializador
+                    da classe (não é encorajado nem desencorajado).</li>
+                <li>Caso exigido por outras seções deste documento (como a Seção 3,
+                    <a href="#s3-estrutura-arquivos">Estrutura dos arquivos fonte</a>, e Seção 3.3,
+                    <a href="#s3.3-declaracao-imports">Declaração de Imports</a>).</li>
+            </ol>
+            <p><em>Múltiplas</em> linhas em branco consecutiva são permitidas, mas nunca exigidas (ou encorajadas).</p>
+            <h4 id="s4.6.2-espaco-em-branco-horizontal">4.6.2 Espaço em branco horizontal</h4>
+            <p>Além de onde é exigido pela linguagem ou outra regras de estilo, e separadamente dos literais, comentários e
+                Javaoc, um único espaço ASCII também aparece <strong>apenas</strong> nos seguintes lugares.</p>
+            <ol>
+                <li>Separando qualquer palavra reservada, como
+                    <code class="prettyprint lang-java">if</code>,
+                    <code class="prettyprint lang-java">for</code> or
+                    <code class="prettyprint lang-java">catch</code>, de um parentese de abertura (
+                    <code class="prettyprint lang-java">(</code>) que o segue naquela linha</li>
+                <li>Separando qualquer palavra reservada como
+                    <code class="prettyprint lang-java">else</code> ou
+                    <code class="prettyprint lang-java">catch</code>, de uma chave de fechamento (
+                    <code class="prettyprint lang-java">}</code>) que a precede naquela linha</li>
+                <li>Antes de qualquer chave de abertura (
+                    <code class="prettyprint lang-java">{</code>), com duas exceções:
+                    <ul>
+                        <li><code class="prettyprint lang-java">@SomeAnnotation({a, b})</code> (nenhum espaço é utilizado)</li>
+                        <li><code class="prettyprint lang-java">String[][] x = {{"foo"}};</code> (nenhum espaço é exigido entre
+                            <code class="prettyprint lang-java">{{</code>, pelo item 8 abaixo)</li>
+                    </ul>
+                </li>
+                <li>Em ambos os lados de qualquer operador binário ou ternário. Isso também se aplica aos seguintes símbolos:
+                    <ul>
+                        <li>a ampulheta em um tipo conjuntivo vinculado:
+                            <code class="prettyprint lang-java">&lt;T extends Foo &amp; Bar&gt;</code></li>
+                        <li>o pipe para um bloco catch que trata múltiplas exceções:
+                            <code class="prettyprint lang-java">catch (FooException | BarException e)</code></li>
+                        <li>os dois pontos (<code class="prettyprint lang-java">:</code>) em um
+                            <code class="prettyprint lang-java">for</code> melhorado instrução ("foreach") </li>
+                        <li>a seta em uma expressão lambda:
+                            <code class="prettyprint lang-java">(String str) -&gt; str.length()</code></li>
+                    </ul>
+                    mas não
+                    <ul>
+                        <li>os dois pontos duplos(<code class="prettyprint lang-java">::</code>) de uma referência de método,
+                            que é escrita como
+                            <code class="prettyprint lang-java">Object::toString</code></li>
+                        <li>o ponto separador (<code class="prettyprint lang-java">.</code>), que é escrito como
+                            <code class="prettyprint lang-java">object.toString()</code></li>
+                    </ul>
+                </li>
+                <li>Após <code class="prettyprint lang-java">,:;</code> ou parênteses de fechamento (
+                    <code class="prettyprint lang-java">)</code>) de um <em>cast</em></li>
+                <li>nos dois lados de uma barra dupla (<code class="prettyprint lang-java">//</code>) que um comentário de fim
+                    de linha. Aqui, múltiplos espaços são permitidos, mas não exigidos.</li>
+                <li>Entre tipo e variável de uma declaração
+                    <code class="prettyprint lang-java">List&lt;String&gt; list</code></li>
+                <li><em>Opcional</em> apenas dentro das duas chaves de um inicializador de um array
+                    <ul>
+                        <li><code class="prettyprint lang-java">new int[] {5, 6}</code> e
+                            <code class="prettyprint lang-java">new int[] { 5, 6 }</code> são validos</li>
+                    </ul>
+                </li>
+            </ol>
+            Esta regra nunca é interpretada como exigindo ou proibindo espaço adicional no começo ou fim de uma linha, ela endereça apenas
+            espaço <em>interior</em>.
+            <p></p>
+            <h4 id="s4.6.3-alinhamento-horizontal">4.6.3 Alinhamento horizontal: nunca exigido</h4>
+            <p class="terminology"><strong>Nota de terminologia:</strong> <em>Alinhamento horizontal</em> é a prática de adicionar um número variável
+                de espaços no seu código com o objetivo de fazer certos símbolos aparecerem diretamente abaixo de certos
+                outros símbolos em linhas anteriores.</p>
+            <p>Aqui há um exemplo sem alinhamento horizontal, e então usando alinhamento:</p>
+<pre class="prettyprint lang-java">private int x; // essa linha está de acordo
+private Color cor; // essa também
+
+private int   x;      // permitida, mas edições futuras
+private Color cor;  // podem deixa-la desalinhada
+</pre>
+            <h3 id="s4.7-parenteses-agrupamento">4.7 Parênteses de agrupamento: recomendado</h3>
+            <p>Parênteses de agrupamento opcionais são omitidos apenas quando o autor e revisor concordam que não há chance
+                sensata de que o codigo possa ser mal interpretado sem eles(os parênteses), nem eles tornariam o código mais
+                fácil para ler.<em>Não</em> é razoável assumir que todo leitor tem a tabela inteira de prcedência de operadores
+                memorizada.
+            </p>
+            <h3 id="s4.8-construtores-específicos">4.8 Construtores específios</h3>
+            <h4 id="s4.8.1-classes-enum">4.8.1 Classes enum</h4>
+            <p>Após cada vírgula que segue uma constante enum, uma quebra de linha é necessária. Esse é um exemplo:
+            </p><pre class="prettyprint lang-java">private enum Resposta {
+    SIM {
+        @Override public String toString() {
+            return "sim";
+        }
+    },
+
+    NAO,
+    TALVEZ
+}
+            </pre>
+            <p>Como classes enum <em>são classes</em>, todas as outras regras para formatação de classes se aplicam.</p>
+            <h4 id="s4.8.2-declaracoes-variaveis">4.8.2 Declarações de variáveis</h4>
+            <h5 id="s4.8.2.1-variaveis-por-declaracao">4.8.2.1 Uma variavel por declaracao</h5>
+            <p>Cada declaração de variável (campo ou local) declara apenas uma variável: declarações como as de
+                <code class="badcode">int a, b;</code> não são usadas.</p>
+            <h5 id="s4.8.2.2-variaveis-escopo-limitado">4.8.2.2 Declare quando necessário</h5>
+            <p>variáveis locais <strong>não são</strong> habitualmente declaradas no começo do seu bloco ou construção tipo
+                bloco. Ao invés disso, variáveis locais são declaradas perto de onde são usadas pela primeira vez (sempre
+                que possível), para minimizar seu escopo. Declarações de variáveis locais tipicamente têm inicializadores,
+                ou são inicializadas imediatamente após a declaração.</p>
+            <h4 id="s4.8.3-arrays">4.8.3 Arrays</h4>
+            <h5 id="s4.8.3.1-inicializadores-array">4.8.3.1 Inicializadores de Array: podem ser "tipo bloco"</h5>
+            <p>Qualquer inicializador de array pode <em>opcionalmente</em> pode ser formatado como se fosse uma "construção
+                tipo bloco." por exemplo, os seguintes são todos válidos (<strong>não é</strong> uma lista extensa):</p>
+            <pre class="prettyprint lang-java">new int[] {           new int[] {
+  0, 1, 2, 3            0,
+}                       1,
+                        2,
+new int[] {             3,
+  0, 1,               }
+  2, 3
+}                     new int[]
+                          {0, 1, 2, 3}
+</pre>
+            <h5 id="s4.8.3.2-declaracoes-array">4.8.3.2 Sem declarações estilo C</h5>
+            <p>Os colchetes entram na parte do <em>tipo</em>, não na variável:
+                <code class="prettyprint lang-java">String[] args</code>, não
+                <code class="badcode">String args[]</code>.</p>
+            <h4 id="s4.8.4-switch">4.8.4 instruções switch</h4>
+            <p class="terminology"><strong>Nota de terminologia:</strong> dentro das chaves de um <em>bloco switch</em> há um ou mais <em>grupos de instrução</em>.
+                cada grupo de instrução consiste em um ou mais <em>rótulos switch</em> (ou <code class="prettyprint lang-java">case FOO:</code>                ou
+                <code class="prettyprint lang-java">default:</code>), seguidos por uma ou mais instruções.</p>
+            <h5 id="s4.8.4.1-indentacao-switch">4.8.4.1 Indentação</h5>
+            <p>Assim como com qualquer outro bloco, os conteúdos de um bloco switch são indentados com +2 espaços.</p>
+            <p>Após um rótulo switch, há uma quebra de linha, e o nível de indentação é acrescido em +2, exatamente como se
+                um bloco tivesse sido aberto. O rótulo switch seguinte retorna ao nível de indentação anterior, assim como
+                se um bloco tivesse sido fechado.</p>
+            <h5 id="s4.8.4.2-passa-reto-switch">4.8.4.2 Passa reto (Fall-through): comentados</h5>
+            <p>Dentro de um bloco switch, cada instrução termina abruptamente ( com um <code class="prettyprint lang-java">break</code>,
+                <code class="prettyprint lang-java">continue</code>,
+                <code class="prettyprint lang-java">return</code> ou exceção lançada), ou é marcado com um comentário indicando
+                que a execução irá ou <em>poderá</em> continuar no próximo grupo de instruções. Qualquer comentário que indique
+                a ideia de passar reto para o próximo <em>case</em> (fall through) é suficiente(tipicamente
+                <code class="prettyprint lang-java">// Passa reto</code>). Esse comentário não é exigido na última instrução
+                do bloco switch. Exemplo:</p>
+            <pre class="prettyprint lang-java">switch (input) {
+    case 1:
+    case 2:
+        preparaUmOuDois();
+        // Passa reto
+    case 3:
+        trataUmDoisOuTres();
+        break;
+    default:
+        TrataNumeroLarge(input);
+}
+            </pre>
+            <p>Note que nenhum comentário é necessário após <code class="prettyprint lang-java">case 1:</code>, apenas no final
+                de cada grupo de instruções.</p>
+            <h5 id="s4.8.4.3-switch-default">4.8.4.3 O caso <code>default</code> é presente</h5>
+            <p>Cada instrução switch inclui um grupo de instrução <code class="prettyprint lang-java">default</code>, até mesmo
+                se não contém nenhum código.</p>
+            <h4 id="s4.8.5-anotacoes">4.8.5 Anotações</h4>
+            <p>Anotações aplicando a classe, método ou construtor aparecem imediatamente após o bloco de documentação, e cada
+                anotação é listada em uma linha própria (isto é, uma anotação por linha). Essas quebras de linha não constituem
+                quebras-linhas de fato (Seção 4.5, <a href="#s4.5-quebra-linha">Quebra de linha</a>), então o nível de indentação
+                não é aumentado. Exemplo:</p>
+            <pre class="prettyprint lang-java">@Override
+@Nullable
+public String getNomeSePresente() { ... }
+            </pre>
+            <p class="exception"><strong>Exceção:</strong> Uma <em>única</em> anotação sem parâmetro <em>pode</em> de outra forma aparecer junto
+                com a primeira linha da assinatura, por exemplo:</p>
+            <pre class="prettyprint lang-java">@Override public int hashCode() { ... }
+            </pre>
+            <p>Anotações aplicando a um campo também aparecem imediatamente após o bloco de documentação, mas nesse caso,<em>múltiplas</em>                anotações (possivelmente parametrizadas) podem ser listadas na mesma linha; por exemplo:</p>
+            <pre class="prettyprint lang-java">@Partial @Mock DataLoader loader;
+            </pre>
+            <p>Não há regras específicas para formatar anotações em parâmetros, variáveis locais, ou tipos.
+            </p>
+            <h4 id="s4.8.6-comentarios">4.8.6 Comentários</h4>
+            <p>Esta seção aborda <em>comentários de implementação</em>. Javadoc is abordado separadamente na Seção 7, <a href="#s7-javadoc">Javadoc</a>.</p>
+            <p>Qualquer quebra de linha pode ser precedida por um espaço em branco arbitrário seguido por um comentário de implementação.
+                Tal comentário renderiza a linha como não em branco.</p>
+            <h5 id="s4.8.6.1-estilo-comentario-bloco">4.8.6.1 Estilo de comentário em bloco</h5>
+            <p>Comentários em bloco são indentados no mesmo nível que seu código em volta. Eles podem estar no estilo
+                <code class="prettyprint lang-java">/* ... */</code> ou
+                <code class="prettyprint lang-java">// ...</code>. Para comentários multi-linhas
+                <code class="prettyprint lang-java">/* ... */</code>, linhas subsequentes devem iniciar com
+                <code>*</code> alinhado com o <code>*</code> na linha anterior.</p>
+            <pre class="prettyprint lang-java">/*
+            * Isto está          // E isso           /* Ou você pode
+            * correto.           // também.          * até mesmo fazer isso. */
+            */
+            </pre>
+            <p class="tip"><strong>Dica:</strong> Quando escrevendo comentários multi-linhas, use o estilo
+                <code class="prettyprint lang-java">/* ... */</code> se quiser que formatadores de código automático reencaixem
+                (reorganizar dentro do limite de linhas) as linhas quando necessário (estilo parágrafo). A maioria dos formatadores
+                não reencaixam linhas no formato <code class="prettyprint lang-java">// ...</code> de estilo de comentário
+                de bloco.</p>
+            <h4 id="s4.8.7-modificadores">4.8.7 Modificadores</h4>
+            <p>Modificadores de classe ou membro, quando presentes, aparecem na ordem recomendada pela Especificação da Linguagem
+                Java:
+            </p>
+            <pre>public protected private abstract default static final transient volatile synchronized native strictfp
+            </pre>
+            <h4 id="s4.8.8-literais-numericos">4.8.8 Literais Numéricos</h4>
+            <p>literais inteiros com valor <code>long</code> usam um sufixo maiúsculo <code>L</code>, nunca em minúsculo (para
+                evitar confusão com o dígito <code>1</code>). Por exemplo, <code>3000000000L</code> em vez de <code class="badcode">3000000000l</code>.</p>
+            <h2 id="s5-nomes">5 Nomes</h2>
+            <h3 id="s5.1-nomes-identificadores">5.1 Regras comuns para todos os identificadores</h3>
+            <p>Identificadores usam apenas letras e digitos ASCII, e, em um número pequeno de casos notados abaixo, sublinhados.
+                Portanto cada nome de identificador válido corresponde à expressão regular
+                <code>\w+</code> .</p>
+            <p>Prefixos ou sufixos especiais, como os vistos nos exemplos <code class="badcode">name_</code>,
+                <code class="badcode">mName</code>, <code class="badcode">s_name</code> e
+                <code class="badcode">kName</code>, <strong>não</strong> são utilizados.</p>
+            <h3 id="s5.2-nomes-identificadores-especificos">5.2 Regras por tipo de identificador</h3>
+            <h4 id="s5.2.1-nomes-pacotes">5.2.1 Nomes de pacotes</h4>
+            <p>Nomes de pacotes são todos em minúsculo, com palavras consecutivas simplesmente concatenadas juntas (sem sublinhados).
+                Por exemplo, <code>com.example.deepspace</code>, não
+                <code class="badcode">com.example.deepSpace</code> ou
+                <code class="badcode">com.example.deep_space</code>.</p>
+            <h4 id="s5.2.2-nomes-classes">5.2.2 Nomes de classes</h4>
+            <p>Nomes de classes são escritos em <a href="#s5.3-camel-case">UpperCamelCase</a>.</p>
+            <p>Nomes de classes são tipicamente substantivos. Por exemplo,
+                <code class="prettyprint lang-java">Character</code> ou
+                <code class="prettyprint lang-java">ImmutableList</code>. Nomes de interfaces também podem ser substantivos
+                (por exemplo, <code class="prettyprint lang-java">List</code>), mas ao invés disso podem algumas vezes ser
+                adjetivos (por exemplo,
+                <code class="prettyprint lang-java">Readable</code>).</p>
+            <p>Não há regras específicas ou até mesmo convenções bem-estabelecidas para nomear um tipo de anotação.</p>
+            <p>Classes de <em>teste</em> são nomeadas começando com o nome da classe que elas estão testando, e terminando com
+                <code class="prettyprint lang-java">Test</code>. Por exemplo,
+                <code class="prettyprint lang-java">HashTest</code> or
+                <code class="prettyprint lang-java">HashIntegrationTest</code>.</p>
+            <h4 id="s5.2.3-nomes-metodos">5.2.3 Nomes de métodos</h4>
+            <p> Nomes de métoos são escritos em <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+            <p>Nomes de métodos são tipicamente verbos. Por exemplo,
+                <code class="prettyprint lang-java">enviarMensagem</code> ou
+                <code class="prettyprint lang-java">parar</code>.</p>
+            <p>Sublinhados podem aparecer em nomes de métodos de <em>teste</em> JUnit para separar componentes lógicos do nome
+                . Um padrão típico é <code>test<i>&lt;MetodoSendoTestado&gt;</i>_<i>&lt;estado&gt;</i></code>, por exemplo
+                <code class="prettyprint lang-java">testPop_pilhaVazia</code>. Não há Um Jeito Correto de se nomear nomes
+                de métodos de teste.</p>
+            <a name="constants"></a>
+            <h4 id="s5.2.4-nomes-constantes">5.2.4 Nomes de constantes</h4>
+            <p>Nomes de constantes usam <code class="prettyprint lang-java">CONSTANT_CASE</code>: todas as letras em maiúsculo,
+                com palavras separadas por sublinhados. Mas o que <em>é</em> uma constante, exatamente?</p>
+            <p>Constantes são campos static final que nos quais os conteúdos são profundamente imutáveis e dos quais métodos
+                não têm efeitos colaterais detectáveis. Isso inclui primitivos, Strings, tipos imutáveis, e coleções imutáveis
+                de tipos imutáveis. Se qualquer estado observável da instância pode mudar, então não é uma constante. Meramente
+                <em>propor</em> a nunca mudar o objeto não é suficiente. Exemplos:</p>
+            <pre class="prettyprint lang-java">// Constantes
+            static final int NUMERO = 5;
+            static final ImmutableList&lt;String&gt; NOMES = ImmutableList.of("Eduado", "Ana");
+            static final ImmutableMap&lt;String, Integer&gt; IDADES = ImmutableMap.of("Eduardo", 35, "Ana", 32);
+            static final Joiner VIRGULA_JOINER = Joiner.on(','); // porque Joiner é imutável
+            static final AlgumTipoMutavel[] EMPTY_ARRAY = {};
+            enum AlgumEnum { CONSTANTE_ENUM }
+
+            // Não são constantes
+            static String nonFinal = "non-final";
+            final String nonStatic = "non-static";
+            static final Set&lt;String&gt; colecaoMutavel = new HashSet&lt;String&gt;();
+            static final ImmutableSet&lt;AlgumTipoMutavel&gt; elementosMutaveis = ImmutableSet.of(mutavel);
+            static final ImmutableMap&lt;String, AlgumTipoMutavel&gt; valoresMutaveis =
+                ImmutableMap.of("Eduardo", instanciaMutavel, "Ana", instanciaMutavel2);
+            static final Logger logger = Logger.getLogger(MyClass.getName());
+            static final String[] arrayNaoVazio = {"esses", "podem", "mudar"};
+            </pre>
+            <p>Esses nomes são tipicamente substantivos.</p>
+            <h4 id="s5.2.5-nomes-campo-nao-constante">5.2.5 Nomes de campo não-constantes</h4>
+            <p> Nomes de campo não-constantes (static ou de outro modo) são escritos em <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+            <p>Esses nomes são tipicamente substantivos. Por exemplo,
+                <code class="prettyprint lang-java">valoresComputados</code> ou
+                <code class="prettyprint lang-java">indice</code>.</p>
+            <h4 id="s5.2.6-nomes-parametros">5.2.6 Nomes de parâmetros</h4>
+            <p>Nomes de parâmetros são escritos em <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+            <p>Nomes de parâmetros com um caractere em métodos publicos devem ser evitados.</p>
+            <h4 id="s5.2.7-nomes-variaveis-locais">5.2.7 Nomes de variáveis locais</h4>
+            <p>Nomes de variáveis locais são escritos em <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+            <p>Até quando final e imumutable, variáveis locais não são consideradas constantes, e não devem ser estilizadas
+                como constantes.</p>
+            <h4 id="s5.2.8-type-variable-names">5.2.8 Nomes de variáveis Tipo</h4>
+            <p>Cada variável Tipo é nomeada em um dos dois estilos:</p>
+            <ul>
+                <li>Uma única letra em maiúsculo, opcionalmente seguida por um único numeral (como
+                    <code class="prettyprint lang-java">E</code>, <code class="prettyprint lang-java">T</code>,
+                    <code class="prettyprint lang-java">X</code>, <code class="prettyprint lang-java">T2</code>)
+                </li>
+                <li>Um nome na forma usada para classes (veja Seção 5.2.2,
+                    <a href="#s5.2.2-nomes-classes">Nomes de Classes</a>), seguido por uma letra maiúscula
+                    <code class="prettyprint lang-java">T</code> (Exemplos:
+                    <code class="prettyprint lang-java">RequestT</code>,
+                    <code class="prettyprint lang-java">FooBarT</code>).</li>
+            </ul>
+            <a name="acronyms"></a>
+            <a name="camelcase"></a>
+            <h3 id="s5.3-camel-case">5.3 Camel case: definido</h3>
+            <p> Por haver mais de uma maneira de converter uma frase para camel case, pode-se execute os seguintes passos sobre
+                a forma de prosa do nome:</p>
+            <ol>
+                <li>Converta a frase para ASCII puro e remova quaisquer apóstrofes. Exemplo, "M&#252;ller's algorithm" pode se
+                    tornar "Muellers algorithm".</li>
+                <li>Divida o resultados em palavras, separando em espaços e qualquer pontuação restante (tipicamente hífens).
+                </li>
+                <li>Agora ponha para minúsculo <em>qualquer</em> (incluindo acronimos), então passe para maiúsculo apenas o primeiro
+                    caractere de:
+                    <ul>
+                        <li>... cada palavra, para produzir o <em>upper camel case</em>, ou</li>
+                        <li>... cada palavra exceto a primeira, para produzir o <em>lower camel case</em></li>
+                    </ul>
+                </li>
+                <li>Finalmente, junte todas as palavras em um identificador único.</li>
+            </ol>
+            <p>Note que o case das palavras originais é praticamente totalmente ignorado. Exemplos:</p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Forma de prosa</th>
+                        <th>Correto</th>
+                        <th>Incorreto</th>
+                    </tr>
+                    <tr>
+                        <td>"XML HTTP request"</td>
+                        <td><code class="prettyprint lang-java">XmlHttpRequest</code></td>
+                        <td><code class="badcode">XMLHTTPRequest</code></td>
+                    </tr>
+                    <tr>
+                        <td>"novo ID de cliente"</td>
+                        <td><code class="prettyprint lang-java">nodoIdCliente</code></td>
+                        <td><code class="badcode">novoIDCliente</code></td>
+                    </tr>
+                    <tr>
+                        <td>"inner stopwatch"</td>
+                        <td><code class="prettyprint lang-java">innerStopwatch</code></td>
+                        <td><code class="badcode">innerStopWatch</code></td>
+                    </tr>
+                    <tr>
+                        <td>"suporta IPv6 on iOS?"</td>
+                        <td><code class="prettyprint lang-java">suportaIpv6OnIos</code></td>
+                        <td><code class="badcode">suportaIPv6OnIOS</code></td>
+                    </tr>
+                    <tr>
+                        <td>"importador YouTube"</td>
+                        <td><code class="prettyprint lang-java">ImportadorYouTube</code><br>
+                            <code class="prettyprint lang-java">ImportadorYoutube</code>*</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>*Aceitável mas não recomendado.</p>
+            <h2 id="s6-praticas-programacao">6 Práticas de Programação</h2>
+            <h3 id="s6.1-pratica-override">6.1 <code>@Override</code>: sempre usado</h3>
+            <p>Um método é marcado com a anotação <code class="prettyprint lang-java">@Override</code> sempre que é aplicável.
+                Isso inclui um método de classe sobrescrevendo um método de superclasse, um método de classe implementando
+                um método de interface, e um método de interface reespecificando um método de super-interface.</p>
+            <p class="exception"><strong>Exceção:</strong>
+                <code class="prettyprint lang-java">@Override</code> pode ser omitida quando o método pai é
+                <code class="prettyprint lang-java">@Deprecated</code>.</p>
+            <h3 id="s6.2-excecoes-capturadas">6.2 Exceções capturadas: não ignoradas
+            </h3>
+            <p>Exceto quando notado abaixo, é muito raramente correto não fazer nada em resposta à uma exceção capturada. (
+                Tipicas respostas são loga-la, ou até mesmo se considerada "impossível", fazer o <em>throw</em> novamente
+                como um
+                <code class="prettyprint lang-java">AssertionError</code>.)</p>
+            <p>Quando é apropriado não tomar nenhuma ação no bloco catch, a razão na qual justifica tal ação é explicada em
+                um comentário.</p>
+            <pre class="prettyprint lang-java">try {
+            int i = Integer.parseInt(resposta);
+            return tratarRespostaNumerica(i);
+            } catch (NumberFormatException ok) {
+            // não é numérico; tudo bem, apenas continua
+            }
+            return tratarRespostaTexto(resposta);
+            </pre>
+            <p class="exception"><strong>Exceção:</strong> Em testes, uma exceção capturada pode ser ignorada sem comentário <em>se</em> é ou
+                começa com <code class="prettyprint lang-java">expected</code>. O código a seguir é um idioma bem comum para
+                garantir que o código sobre teste <em>de fato</em> lança uma exceção do tipo esperado, então um comentário
+                é desnecessário aqui.</p>
+            <pre class="prettyprint lang-java">try {
+            pilhaVazia.pop();
+            fail();
+            } catch (NoSuchElementException expected) {
+            }
+            </pre>
+            <h3 id="s6.3-membros-estaticos">6.3 Membros Estáticos: Qualificados usando classe</h3>
+            <p>Quando a referência a um membro de classe estática deve ser qualificado, ela é qualificada com o nome da classe,
+                não com uma referência ou expressão do tipo daquela classe. </p>
+            <pre class="prettyprint lang-java">Foo aFoo = ...;
+            Foo.umMetodoEstatico(); // bom 
+            <span class="badcode">aFoo.umMetodoEstatico();</span> // ruim
+            <span class="badcode">algoQueProduzUmFoo().umMetodoEstatico();</span> // muito ruim
+            </pre>
+            <a name="finalizers"></a>
+            <h3 id="s6.4-finalizers">6.4 Finalizadores: não utilizado</h3>
+            <p>É <strong>extremamente raro</strong> dar override em <code class="prettyprint
+            lang-java">Object.finalize</code>.</p>
+            <p class="tip"><strong>Dica:</strong> Leitura
+                <a href="http://books.google.com/books?isbn=8131726592"><em>Effective Java</em></a> Item 7, "Avoid Finalizers".</p>
+            <h2 id="s7-javadoc">7 Javadoc</h2>
+            <h3 id="s7.1-javadoc-formatacao">7.1 Formatação</h3>
+            <h4 id="s7.1.1-javadoc-multi-linha">7.1.1 Forma geral</h4>
+            <p>A formatação <em>básica</em> dos blocos Javadoc é como neste exemplo:</p>
+            <pre class="prettyprint lang-java">/**
+            * Múltiplas linhas de texto Javadoc é escrito aqui,
+            * amarrados normalmente...
+            */
+            public int metodo(String p1) { ... }
+            </pre>
+            <p>... ou neste exemplo de linha única:</p>
+            <pre class="prettyprint lang-java">/** um pedaço especialmente pequeno de Javadoc. */
+            </pre>
+            <p>A forma básica é sempre aceita. A forma de linha única pode ser substituída quando não há cláusulas <code>@</code>,
+                e o bloco Javadoc inteiro (incluindo marcadores de comentários) pode caber em uma única linha.</p>
+            <h4 id="s7.1.2-javadoc-paragrafos">7.1.2 Paragrafos</h4>
+            <p>Uma linha em branco&#8212;isto é, uma linha contendo apenas o asterisco de início(<code>*</code>)&#8212;aparece
+                entre parágrafos, e antes do grupo de <code>@</code> se presente. Cada parágrafo menos o primeiro tem <code>&lt;p&gt;</code>                imediatamente antes da primeira palavra, sem espaço após.</p>
+            <h4 id="s7.1.3-javadoc-arrobas">7.1.3 Cláusulas Arroba</h4>
+            <p>Quaisquer das cláusulas arroba que são utilizadas aparecem na ordem <code>@param</code>,
+                <code>@return</code>, <code>@throws</code>, <code>@deprecated</code>, e esses quatro tipos nunca aparecem
+                com uma descrição em branco. Quando uma cláusula arroba não cabe em uma única linha, linhas de continuação
+                são indentadas quatro (ou mais) espaços a partir da posição do <code>@</code>.
+            </p>
+            <h3 id="s7.2-fragmento-sumario">7.2 O fragmento sumário</h3>
+            <p>Cada bloco javadoc começa com um breve <strong>fragmento sumário</strong>. Esse fragmento é muito importante:
+                é a única parte do texto que aparece em certos contextos como índices de classes e métodos.</p>
+            <p>Isto é um fragmento&#8212;uma frase nominal ou verbal, não uma sentença completa.
+                <strong>Não</strong> começa com <code class="badcode">A {@code Foo} é um...</code>, ou
+                <code class="badcode">Este método retorna...</code>, nem forma uma sentença imperativa completa como
+                <code class="badcode">Salve o registro.</code>. Entretanto, o fragmento começa com maiúsculo e é pontuado
+                como se fosse uma sentença completa.</p>
+            <p class="tip"><strong>Dica:</strong> Um erro comum é escrever um simples Javadoc na forma
+                <code class="badcode">/** @return o ID do cliente */</code>. Isso é incorreto, e deveria ser trocado para
+                <code class="prettyprint lang-java">/** Retorna o ID do cliente. */</code>.</p>
+            <h3 id="s7.3-javadoc-onde-exigido">7.3 Onde Javadoc é utilizado</h3>
+            <p>No <em>mínimo</em>, Javadoc é presente para cada classe
+                <code class="prettyprint lang-java">public</code>, e cada membro
+                <code class="prettyprint lang-java">public</code> ou
+                <code class="prettyprint lang-java">protected</code> de tal classe, com algumas exceções notadas abaixo.</p>
+            <p>Conteúdo adicional Javadoc também pode estar presente, como explicado na Seção 7.3.4,
+                <a href="#s7.3.4-javadoc-nao-exigido">Javadoc não exigido</a>.</p>
+            <h4 id="s7.3.1-javadoc-excecao-auto-explanatorio">7.3.1 Exceção: métodos auto explanatórios</h4>
+            <p>Javadoc é opcional para métodos "simples, óbvios" como
+                <code class="prettyprint lang-java">getFoo</code>, em casos onde não há <em>realmente e verdadeiramente</em>                nada que vale a pena dizer além de "Returns the foo".</p>
+            <p class="note"><strong>Importante:</strong> Por exemplo, para um método chamado <code class="prettyprint lang-java">getCanonicalName</code>,
+                não omita sua documentação (com o pensamento de que iria dizer apenas
+                <code class="badcode">/** Retorna o nome canônico. */</code>) se um leitor típico não sabe o que "nome canônico"
+                significa.
+            </p>
+            <h4 id="s7.3.2-javadoc-excecao-overrides">7.3.2 Exceção: overrides</h4>
+            <p>Javadoc não está sempre presente em um método que sobrescreve um método de supertipo.
+            </p>
+            <h4 id="s7.3.4-javadoc-nao-exigido">7.3.4 Javadoc não exigido</h4>
+            <p>Outras classes ou métodos tem Javadoc <em>quando necessário ou desejado</em>.
+            </p>
+            <p>Sempre que um comentário de implementação seria usado para definir o propósito geral ou comportamento de uma
+                classe ou membro, ao invés aquele comentário é escrito como Javadoc (usando <code>/**</code>).</p>
+            <p>O Javadoc não exigido não está estritamente exigido a seguir as as regras de formatação das Seções 7.1.2, 7.1.3,
+                and 7.2, apesar de ser certamente recomendado.</p>
         </div>
     </div>
 </body>
